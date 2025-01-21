@@ -17,7 +17,7 @@ npm i prisma @prisma/client
 
 
 ```
-
+//Recomendable instalar extension de prisma de vscode
 
 ## Crear swcrc
 
