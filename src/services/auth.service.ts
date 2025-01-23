@@ -1,6 +1,9 @@
 import { PrismaClient, User } from "@prisma/client";
 import bcrypt from 'bcrypt'
+import  jwt  from "jsonwebtoken";
+
 const prisma=new PrismaClient()
+const TOKEN_PASSWORD=process.env.TOKEN_PASSWORD || 'pass'
 
 export class AuthService{
 
@@ -32,4 +35,27 @@ export class AuthService{
         })
 
     }
+
+    static async login(email:string,password:string){
+        //ver si el usuario existe
+
+        const foundUser=await prisma.user.findUnique(
+            {
+                where: {email}
+            }
+        )
+        if(!foundUser) throw new Error(`Invalid user or password`)
+        
+        const isCorrectPassword=await bcrypt.compare(password,foundUser.password)
+        if(!isCorrectPassword) throw new Error(`Invalid user or password`)
+
+        const token=jwt.sign({id:foundUser.id,name:foundUser.name,email:foundUser.email,rol:foundUser.role},TOKEN_PASSWORD,{expiresIn:"1h"})
+
+        return token
+        
+
+
+    }
+
+    
 }
