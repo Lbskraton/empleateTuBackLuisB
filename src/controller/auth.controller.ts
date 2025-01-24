@@ -28,7 +28,15 @@ class AuthController{
             console.log(userData)
             const token=await AuthService.login(userData.email,userData.password)
             //TODO devolver una cookie
+            res.cookie('token',token,{
+                maxAge: 60*60*1000,
+                httpOnly:true, // no accesible por js
+                secure: false, //solo se activa si usas hhtps
+                sameSite: 'strict' //solo valido si = sitio (= dominio back+front)(seguro csrf)
+            })
             res.status(201).json({message:"Login succesfull",token})
+            
+            
         } catch (error) {
             res.status(409).json({message:"Fail to login (Fallo al logear)",error})
         }

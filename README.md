@@ -27,6 +27,18 @@ npm i jsonwebtoken
 
 npm i -D @types/jsonwebtoken
 
+npm i express-rate-limit
+
+npm i helmet
+
+npm i compression
+
+npm i --save/dev @types/compression
+
+npm i cookie-parser
+
+npm i --save-dev @types/cookie-parser
+
 ```
 //Recomendable instalar extension de prisma de vscode
 

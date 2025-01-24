@@ -39,6 +39,17 @@ export class AuthService{
     static async login(email:string,password:string){
         //ver si el usuario existe
 
+        /*
+
+        const query=`Select * from user where email='${email}' AND password='${password}'`
+        const foundUser2=await prisma.$queryRawUnsafe(query) as User[]
+        const foundUser=foundUser2[0]
+
+        if(!foundUser) throw new Error(`Invalid user or password`)
+        */
+
+
+        
         const foundUser=await prisma.user.findUnique(
             {
                 where: {email}
@@ -48,6 +59,8 @@ export class AuthService{
         
         const isCorrectPassword=await bcrypt.compare(password,foundUser.password)
         if(!isCorrectPassword) throw new Error(`Invalid user or password`)
+
+        
 
         const token=jwt.sign({id:foundUser.id,name:foundUser.name,email:foundUser.email,rol:foundUser.role},TOKEN_PASSWORD,{expiresIn:"1h"})
 
