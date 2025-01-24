@@ -12,6 +12,13 @@ export class UserController{
     }
 
     static async listUsers(req:Request,res:Response){
+        try{
+            const users=await UserService.listAll()
+
+        res.status(200).json(users)
+        }catch(error){
+            throw new Error('Fallo al listar usuarios')
+        }
         
 
     }

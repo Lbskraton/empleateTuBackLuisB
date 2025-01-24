@@ -9,7 +9,7 @@ const router=Router()
 
 //puedes meter middleware en la ruta
 router.get('/profile',isAuthenticate,UserController.profile)
-router.get('/userlist',isAuthenticate,isAdmin,UserController.listUsers)
+router.get('/userlist',isAuthenticate,UserController.listUsers)
 
 
 export default router

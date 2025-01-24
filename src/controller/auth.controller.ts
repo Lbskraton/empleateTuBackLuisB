@@ -48,8 +48,6 @@ class AuthController{
 
     static async logout(req:Request,res:Response){}
 
-    
-
 
 
     
