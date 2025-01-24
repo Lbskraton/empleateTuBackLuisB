@@ -17,7 +17,7 @@ export class UserController{
 
         res.status(200).json(users)
         }catch(error){
-            throw new Error('Fallo al listar usuarios')
+            res.status(409).json({error:'Fallo al listar usuarios'})
         }
         
 
