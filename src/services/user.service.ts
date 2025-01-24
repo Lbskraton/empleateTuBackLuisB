@@ -16,7 +16,7 @@ export class UserService{
     }
 
 
-    static async listUsers(){
+    static async listAll(){
         return await prisma.user.findMany({omit:{password:true}})
     }
 }
