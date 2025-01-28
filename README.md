@@ -33,6 +33,10 @@ npm i helmet
 
 npm i compression
 
+npm i cors
+
+npm i --save-dev @types/cors
+
 npm i --save/dev @types/compression
 
 npm i cookie-parser
