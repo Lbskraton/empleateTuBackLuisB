@@ -6,9 +6,18 @@ import { ValidationMiddleware } from "@/middlewares/validation.middleware";
 
 const router=Router()
 
-router.post('/login',loginValidation,ValidationMiddleware,AuthController.login)
+//list offers
+router.get('/',OfferControler.getAll)
 
-router.post('/register',registerValidation,ValidationMiddleware,AuthController.register)
+//add an offer, datos van en el body
+router.post('/',OfferControler.save)
+
+//Borrar una oferta , el id va como ruta
+router.delete('/:id',OfferControler.delete)
+
+//update localhost:3000/api/offers/id {body:changes}
+router.put()
+
 
 
 

@@ -1,3 +1,5 @@
+
+import  {httpException}  from "@/exceptions/httpException";
 import { PrismaClient, User } from "@prisma/client";
 import bcrypt from 'bcrypt'
 import  jwt  from "jsonwebtoken";
@@ -17,7 +19,7 @@ export class AuthService{
                 where: {email:user.email}
             }
         )
-        if(findUser) throw new Error(`User ${user.email} already exists`)
+        if(findUser) throw new httpException(409,`User ${user.email} already exists`)
 
         //encriptar el password
 
@@ -55,10 +57,10 @@ export class AuthService{
                 where: {email}
             }
         )
-        if(!foundUser) throw new Error(`Invalid user or password`)
+        if(!foundUser) throw new httpException(401,`Invalid user or password`)
         
         const isCorrectPassword=await bcrypt.compare(password,foundUser.password)
-        if(!isCorrectPassword) throw new Error(`Invalid user or password`)
+        if(!isCorrectPassword) throw new httpException(401,`Invalid user or password`)
 
         
 

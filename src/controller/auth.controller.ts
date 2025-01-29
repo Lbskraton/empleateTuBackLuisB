@@ -1,22 +1,23 @@
-import { Request, Response } from "express"
+import { NextFunction, Request, Response } from "express"
 import { AuthService } from "../services/auth.service"
 
 //Se comunica con el cliente
 class AuthController{
     
-    static async register(req:Request,res:Response){
+    static async register(req:Request,res:Response,next:NextFunction){
         try {
             const userData=req.body //vienen por post en el cuerpo de la peticion
            //TODO validar login
             const newUser=await AuthService.register(userData)
             res.status(201).json({message:"User egistered succesfully",newUser})
-        } catch (error) {
-            res.status(409).json({message:"Fallo al registrar el usuario"})
+        }catch(error){
+            next(error)
         }
-        
     }
+        
+    
 
-    static async login(req:Request,res:Response) {
+    static async login(req:Request,res:Response,next:NextFunction) {
 
         //ver si el usuario existe
         //ver si el password coincide
@@ -38,7 +39,8 @@ class AuthController{
             
             
         } catch (error) {
-            res.status(409).json({message:"Fail to login (Fallo al logear)",error})
+            next(error)
+            
         }
         
     }

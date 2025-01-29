@@ -1,14 +1,18 @@
 import express,{Response} from 'express'
 import AuthRouter from './routes/auth.routes'
 import UserRouter from './routes/user.routes'
+import OffertRouter from './routes/offer.routes'
 import rateLimit from 'express-rate-limit'
 import helmet from 'helmet'
 import compression from 'compression'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
+import { ErrorMiddleware } from './middlewares/error.middleware'
 
 const app=express()
 app.use(cookieParser())
+
+app.use(ErrorMiddleware)
 
 app.use(cors({
     origin: 'http://localhost:5173',
@@ -42,6 +46,7 @@ app.get('/',  (_,res:Response)=>{
 
 app.use('/api/auth/',AuthRouter)
 app.use('/api/users/',UserRouter)
+app.use('/api/users/',OffertRouter)
 
 
 export default app

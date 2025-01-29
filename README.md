@@ -43,6 +43,8 @@ npm i cookie-parser
 
 npm i --save-dev @types/cookie-parser
 
+npm i express-validator
+
 ```
 //Recomendable instalar extension de prisma de vscode
 
