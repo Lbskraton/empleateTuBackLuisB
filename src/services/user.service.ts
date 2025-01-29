@@ -1,4 +1,4 @@
-import { httpException } from "@/exceptions/httpexception"
+import { httpException } from "@/exceptions/httpException"
 import { PrismaClient } from "@prisma/client"
 
 const prisma=new PrismaClient()
