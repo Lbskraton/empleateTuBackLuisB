@@ -4,6 +4,10 @@ import { Router } from "express";
 
 const router=Router()
 
+//get an offer details
+
+router.get('/:id',OfferControler.getById)
+
 //list offers
 router.get('/',OfferControler.getAll)
 
