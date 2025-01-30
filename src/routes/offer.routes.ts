@@ -1,4 +1,4 @@
-import OfferControler from "@/controller/offer.controller";
+import OfferControler from "../controller/offer.controller";
 import { Router } from "express";
 
 
