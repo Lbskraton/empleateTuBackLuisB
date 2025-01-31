@@ -15,7 +15,7 @@ app.use(cookieParser())
 app.use(ErrorMiddleware)
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: '*',
     methods:['GET','POST','PUT','DELETE'],
     credentials:true
 }))
@@ -46,7 +46,7 @@ app.get('/',  (_,res:Response)=>{
 
 app.use('/api/auth/',AuthRouter)
 app.use('/api/users/',UserRouter)
-app.use('/api/users/',OffertRouter)
+app.use('/api/offers/',OffertRouter)
 
 
 export default app
