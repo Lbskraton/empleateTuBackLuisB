@@ -45,6 +45,12 @@ npm i --save-dev @types/cookie-parser
 
 npm i express-validator
 
+npm i -g npm-check-updates
+
+npx npm-check-updates //comprueba actualizaciones
+
+npx npm-check-updates -u //actualiza
+
 ```
 //Recomendable instalar extension de prisma de vscode
 

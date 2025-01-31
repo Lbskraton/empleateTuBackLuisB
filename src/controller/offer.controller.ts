@@ -30,7 +30,10 @@ class OfferControler{
     static async save(req:Request,res:Response,next:NextFunction){
         try {
 
-            
+            const offerData=req.body
+            OfferService.save(offerData)
+
+            res.status(201).json({message:"Offer egistered succesfully",offerData})
             
         } catch (error) {
             next(error)
@@ -39,6 +42,9 @@ class OfferControler{
 
     static async update(req:Request,res:Response,next:NextFunction){
         try {
+
+            const offerRegister=req.body
+            OfferService.update(offerRegister)
             
             
         } catch (error) {

@@ -1,5 +1,5 @@
 import { httpException } from "../exceptions/httpException"
-import { PrismaClient, User } from "@prisma/client"
+import { Offer, PrismaClient, Rate, User } from "@prisma/client"
 
 
 const prisma=new PrismaClient()
@@ -15,16 +15,6 @@ const checkOffer=async (id:number)=>{
 
 
 export class OfferService{
-
-
-    static async delete(id: number) {
-
-        const foundOffer=await prisma.offer.findUnique({where:{id}})
-        if(!foundOffer) throw new httpException(404,'Offer not found')
-        prisma.offer.delete({where:{id}})
-        
-        
-    }
 
 
     static async getById(id: number) {
@@ -43,17 +33,39 @@ export class OfferService{
     }
 
 
-    static async save(user:User){
-        const foundOffer=await prisma.offer.findMany({})
+    static async save(offer:Offer){
+        const foundOffer=await prisma.offer.findUnique({where:{id:offer.id}})
         if(foundOffer) throw new httpException(404,'Offers alrady exists')
-        prisma.offer.create(foundOffer)
+        prisma.offer.create( {data: {
+            ...offer
+          }})
 
     }
 
-    static async update(user:User){
-        const foundOffer=await prisma.offer.findMany({})
+    static async update(offer:Offer){
+        const foundOffer=await prisma.offer.findUnique({where:{id:offer.id}})
         if(!foundOffer) throw new httpException(404,'Offers not found')
+        prisma.user.update({where:{id:offer.id},data:{...offer}})
         //prisma.user.update(foundOffer)
+    }
+
+    static async delete(id:number) {
+
+        const foundOffer=await prisma.offer.findUnique({where:{id}})
+        if(!foundOffer) throw new httpException(404,'Offer not found')
+        prisma.offer.delete({where:{id}})
+        
+        
+    }
+
+    static async rate(rate:Number,user:User,offer:Offer){
+        const foundOffer=await prisma.offer.findUnique({where:{id:offer.id}})
+        if(!foundOffer) throw new httpException(404,'Offers not found')
+        const foundUser=await prisma.user.findUnique({where:{id:user.id}})
+        if(!foundUser) throw new httpException(404,'User not found')
+
+        
+        
     }
 
 
