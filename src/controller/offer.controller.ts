@@ -19,8 +19,8 @@ class OfferControler{
     static async del(req:Request,res:Response,next:NextFunction){
         try {
             const id=Number.parseInt(req.params.id)
-            OfferService.delete(id)
-            
+            const deletedOffer=OfferService.delete(id)
+            res.status(201).json({message:"Offer deleted succesfully",deletedOffer})
             
         } catch (error) {
             next(error)
@@ -31,9 +31,10 @@ class OfferControler{
         try {
 
             const offerData=req.body
-            OfferService.save(offerData)
+            const userId=req.body.user.id
+            const noffer=OfferService.save(userId,offerData)
 
-            res.status(201).json({message:"Offer egistered succesfully",offerData})
+            res.status(201).json({message:"Offer egistered succesfully",noffer})
             
         } catch (error) {
             next(error)
@@ -42,9 +43,9 @@ class OfferControler{
 
     static async update(req:Request,res:Response,next:NextFunction){
         try {
-
+            const id=Number.parseInt(req.params.id)
             const offerRegister=req.body
-            OfferService.update(offerRegister)
+            OfferService.update(id,offerRegister)
             
             
         } catch (error) {
@@ -54,9 +55,42 @@ class OfferControler{
 
     static async rate(req:Request,res:Response,next:NextFunction){
 
+        try {
+            const id=Number.parseInt(req.params.id)
+            const {value}=req.body
+            const userId=req.body.user.id
+
+            const rated=await OfferService.rate(userId,id,value)
+
+            res.status(200).json({message:"Offer Rated succesfully"})
+            
+            
+        } catch (error) {
+            next(error)
+        }
+        
+
+        
+
     }
 
     static async getRate(req:Request,res:Response,next:NextFunction){
+        
+        try {
+            const id=Number.parseInt(req.params.id)
+
+            const rateMedia=await OfferService.getRate(id)
+
+            res.status(200).json({message:"Rating received succesfully",rateMedia})
+            
+            
+        } catch (error) {
+            next(error)
+        }
+        
+
+        
+
 
     }
 
