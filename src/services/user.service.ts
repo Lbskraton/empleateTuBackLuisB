@@ -1,7 +1,8 @@
+import { prisma } from "../database/database"
 import { httpException } from "../exceptions/httpException"
 import { PrismaClient } from "@prisma/client"
 
-const prisma=new PrismaClient()
+
 
 export class UserService{
     static async getUserByEmail(email:string){

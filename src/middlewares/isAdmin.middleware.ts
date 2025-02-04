@@ -3,7 +3,7 @@ import { Request,Response,NextFunction} from "express";
 
 
 export function isAdmin(req:Request,res:Response,next:NextFunction):any{
-    const {role}=req.body.user
+    const {role}=req.user
     //const token=req.headers.authorization?.split(" ")[1]
         
      try {

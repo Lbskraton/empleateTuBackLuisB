@@ -1,9 +1,10 @@
+import { prisma } from "../database/database"
 import { httpException } from "@/exceptions/httpException"
 import { Category, PrismaClient } from "@prisma/client"
 
 
 
-const prisma=new PrismaClient()
+
 const TOKEN_PASSWORD=process.env.TOKEN_PASSWORD || 'pass'
 
 export class CatService{

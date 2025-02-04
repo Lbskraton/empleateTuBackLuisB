@@ -1,3 +1,4 @@
+import { httpException } from "@/exceptions/httpException"
 import { OfferService } from "../services/offer.service"
 import { NextFunction,Response,Request } from "express"
 
@@ -31,7 +32,7 @@ class OfferControler{
         try {
 
             const offerData=req.body
-            const userId=req.body.user.id
+            const userId=req.user.id
             const noffer=OfferService.save(userId,offerData)
 
             res.status(201).json({message:"Offer egistered succesfully",noffer})
@@ -57,8 +58,9 @@ class OfferControler{
 
         try {
             const id=Number.parseInt(req.params.id)
+            if(isNaN(id)) throw new httpException(400,"Invalid Value")
             const {value}=req.body
-            const userId=req.body.user.id
+            const userId=req.user.id
 
             const rated=await OfferService.rate(userId,id,value)
 
@@ -87,9 +89,25 @@ class OfferControler{
         } catch (error) {
             next(error)
         }
-        
 
+
+
+    }
+
+    static async getMyRate(req:Request,res:Response,next:NextFunction){
         
+        try {
+            const id=Number.parseInt(req.params.id)
+            const userId=req.user.id
+            const rateMedia=await OfferService.getMyRate(userId,id)
+
+            res.status(200).json({message:"Rating received succesfully",rateMedia})
+            
+            
+        } catch (error) {
+            next(error)
+        }
+
 
 
     }

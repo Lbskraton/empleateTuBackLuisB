@@ -1,8 +1,8 @@
+import { prisma } from "../database/database"
 import { httpException } from "../exceptions/httpException"
 import { Offer, PrismaClient, Rate, User } from "@prisma/client"
 
 
-const prisma=new PrismaClient()
 const TOKEN_PASSWORD=process.env.TOKEN_PASSWORD || 'pass'
 
 const checkOffer=async (id:number)=>{
@@ -70,20 +70,47 @@ export class OfferService{
     }
 
 
-    static getRate(id: number) {
-        throw new Error("Method not implemented.")
+    static async getRate(idOffer: number) {
+        const ratingStats=await prisma.rate.aggregate({where:{idOffer},_avg: {value:true},_count: {value:true}})
+
+        return{
+            totalRatings:ratingStats._count.value,
+            averageRatings:ratingStats._avg.value?.toFixed(2)
+        }
+
     }
 
 
-    static rate(userId: any, id: number, value: any) {
-        throw new Error("Method not implemented.")
+    static async rate(idUser: any, idOffer: number, value: any) {
+        const foundOffer=await prisma.offer.findUnique({where:{id:idOffer}})
+        if(!foundOffer) throw new httpException(404,'Offer not found')
+
+        prisma.rate.upsert({
+            where:{
+                idUser_idOffer:{idUser,idOffer}
+
+            },update:{
+                value
+
+            },create:{
+                idUser,
+                idOffer,
+                value
+
+        }})
+
+
     }
 
-   
-
-
-
-
+    static async getMyRate(idUser:number,idOffer:number){
+        const foundOffer=await prisma.offer.findUnique({where:{id:idOffer}})
+        if(!foundOffer) throw new httpException(404,'Offer not found')
+        return await prisma.rate.findUnique({
+            where:{
+                idUser_idOffer:{idUser,idOffer}
+            },select:{ value:true } //solo nos traemos el valor
+        })
+    }
 
     
 }

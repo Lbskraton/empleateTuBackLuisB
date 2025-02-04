@@ -25,6 +25,8 @@ router.post('/:id/rate',OfferControler.rate)
 
 router.get('/:id/rate',OfferControler.getRate)
 
+router.get('/:id/myRate',OfferControler.getMyRate)
+
 
 
 

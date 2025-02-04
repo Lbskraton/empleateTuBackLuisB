@@ -1,3 +1,4 @@
+import { customJwtPayload } from "@/types/express";
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
@@ -11,7 +12,7 @@ export const isAuthenticate=(req:Request,res:Response,next:NextFunction):any=>{
     try {
         const tokenDecoded = jwt.verify(token, TOKEN_PASSWORD)
         //req.headers.user=tokenDecoded
-        req.body.user=tokenDecoded
+        req.user=tokenDecoded as customJwtPayload
         //pasar el testigo al siguiente middleware
         next()
     } catch (error) {
