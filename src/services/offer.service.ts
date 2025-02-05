@@ -1,6 +1,6 @@
 import { prisma } from "../database/database"
 import { httpException } from "../exceptions/httpException"
-import { Offer, PrismaClient, Rate, User } from "@prisma/client"
+import { Offer } from "@prisma/client"
 
 
 const TOKEN_PASSWORD=process.env.TOKEN_PASSWORD || 'pass'

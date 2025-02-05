@@ -1,4 +1,4 @@
-import { httpException } from "@/exceptions/httpException"
+import { httpException } from "../exceptions/httpException"
 import { OfferService } from "../services/offer.service"
 import { NextFunction,Response,Request } from "express"
 

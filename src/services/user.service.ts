@@ -1,6 +1,6 @@
+import { httpException } from "@/exceptions/httpException"
 import { prisma } from "../database/database"
-import { httpException } from "../exceptions/httpException"
-import { PrismaClient } from "@prisma/client"
+
 
 
 

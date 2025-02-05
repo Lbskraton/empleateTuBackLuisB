@@ -1,4 +1,4 @@
-import { CatService } from "@/services/cat.service"
+import { CatService } from "../services/cat.service"
 import { NextFunction,Response,Request } from "express"
 
 class CatController{

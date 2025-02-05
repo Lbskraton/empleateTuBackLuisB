@@ -1,5 +1,5 @@
-import CatController from "@/controller/cat.controller";
-import { loginValidation } from "@/middlewares/validator.middleware";
+import CatController from "../controller/cat.controller";
+import { loginValidation } from "../middlewares/validator.middleware";
 import { Router } from "express";
 
 
