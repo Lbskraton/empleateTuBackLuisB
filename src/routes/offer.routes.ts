@@ -1,4 +1,4 @@
-import { isAuthenticate } from "@/middlewares/auth.middleware";
+import { isAuthenticate } from "../middlewares/auth.middleware";
 import OfferControler from "../controller/offer.controller";
 import { Router } from "express";
 
