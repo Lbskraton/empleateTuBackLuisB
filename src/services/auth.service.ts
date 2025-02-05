@@ -1,5 +1,5 @@
 
-import { prisma } from "@/database/database";
+import { prisma } from "../database/database";
 import  {httpException}  from "../exceptions/httpException";
 import { PrismaClient, User } from "@prisma/client";
 import bcrypt from 'bcrypt'
