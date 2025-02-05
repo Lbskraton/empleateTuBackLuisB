@@ -10,7 +10,6 @@ const TOKEN_PASSWORD=process.env.TOKEN_PASSWORD || 'pass'
 
 export class AuthService{
 
-    
 
     static async register(user:User){
         //ver si el usuario existe

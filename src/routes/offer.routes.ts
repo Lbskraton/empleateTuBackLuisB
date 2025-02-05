@@ -1,3 +1,4 @@
+import { isAuthenticate } from "@/middlewares/auth.middleware";
 import OfferControler from "../controller/offer.controller";
 import { Router } from "express";
 
@@ -12,20 +13,20 @@ router.get('/:id',OfferControler.getById)
 router.get('/',OfferControler.getAll)
 
 //add an offer, datos van en el body
-router.post('/',OfferControler.save)
+router.post('/',isAuthenticate,OfferControler.save)
 
 //Borrar una oferta , el id va como ruta
-router.delete('/:id',OfferControler.del)
+router.delete('/:id',isAuthenticate,OfferControler.del)
 
 //update localhost:3000/api/offers/id {body:changes}
-router.put('/:id',OfferControler.update)
+router.put('/:id',isAuthenticate,OfferControler.update)
 
 
-router.post('/:id/rate',OfferControler.rate)
+router.post('/:id/rate',isAuthenticate,OfferControler.rate)
 
-router.get('/:id/rate',OfferControler.getRate)
+router.get('/:id/rate',isAuthenticate,OfferControler.getRate)
 
-router.get('/:id/myRate',OfferControler.getMyRate)
+router.get('/:id/myRate',isAuthenticate,OfferControler.getMyRate)
 
 
 
