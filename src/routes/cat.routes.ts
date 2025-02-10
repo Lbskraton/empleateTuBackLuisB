@@ -1,4 +1,4 @@
-import { isAuthenticate } from "@/middlewares/auth.middleware";
+import { isAuthenticate } from "../middlewares/auth.middleware";
 import CatController from "../controller/cat.controller";
 import { loginValidation } from "../middlewares/validator.middleware";
 import { Router } from "express";
