@@ -57,9 +57,13 @@ export class AuthService{
                 where: {email}
             }
         )
+
+        console.log('logeando '+email+' '+password)
         if(!foundUser) throw new httpException(401,`Invalid user or password`)
         
         const isCorrectPassword=await bcrypt.compare(password,foundUser.password)
+        console.log(password)
+        console.log(foundUser.password)
         if(!isCorrectPassword) throw new httpException(401,`Invalid user or password`)
 
         
