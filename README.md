@@ -51,6 +51,10 @@ npx npm-check-updates //comprueba actualizaciones
 
 npx npm-check-updates -u //actualiza
 
+npm i morgan
+
+npm install --save @types/morgan
+
 ```
 //Recomendable instalar extension de prisma de vscode
 

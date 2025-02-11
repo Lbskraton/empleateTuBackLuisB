@@ -9,6 +9,8 @@ import compression from 'compression'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import { ErrorMiddleware } from './middlewares/error.middleware'
+import morgan from 'morgan'
+
 
 const app=express()
 app.use(cookieParser())
@@ -16,7 +18,7 @@ app.use(cookieParser())
 app.use(ErrorMiddleware)
 
 app.use(cors({
-    origin: '*',
+    origin: ['*',"https://empleatetufrontluisb.onrender.com","https://localhost:3000"],
     methods:['GET','POST','PUT','DELETE'],
     credentials:true
 }))
@@ -26,6 +28,8 @@ app.use(helmet())
 
 
 app.use(compression())
+
+app.use(morgan('tiny'))
 
 
 const limiter=rateLimit({ //baneo el usuario si intento mucho
