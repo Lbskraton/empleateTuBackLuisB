@@ -7,8 +7,8 @@ import { Router } from "express";
 
 const router=Router()
 
-router.get('/list',loginValidation,CatController.getAll)
-router.put('/:id/',CatController.save)
+router.get('/list',CatController.getAll)
+router.put('/:id/',isAuthenticate,CatController.save)
 
 //add an offer, datos van en el body
 router.post('/',isAuthenticate,CatController.save)
