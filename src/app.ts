@@ -18,7 +18,7 @@ app.use(cookieParser())
 app.use(ErrorMiddleware)
 
 app.use(cors({
-    origin: ["https://empleatetufrontluisb.onrender.com","https://localhost:3000"],
+    origin: ["https://empleatetufrontluisb.onrender.com","http://localhost:3000"],
     methods:['GET','POST','PUT','DELETE'],
     credentials:true,
     allowedHeaders:['Content-Type','Authorization']
