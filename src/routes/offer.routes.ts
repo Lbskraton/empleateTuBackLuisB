@@ -2,7 +2,7 @@ import { isAuthenticate } from "../middlewares/auth.middleware";
 import OfferControler from "../controller/offer.controller";
 import { offerValidation, rateValidation } from "../middlewares/validator.middleware";
 import { Router } from "express";
-import { isAdmin } from "@/middlewares/isAdmin.middleware";
+import { isAdmin } from "../middlewares/isAdmin.middleware";
 
 
 const router=Router()

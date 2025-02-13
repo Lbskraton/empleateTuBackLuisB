@@ -2,8 +2,8 @@ import { isAuthenticate } from "../middlewares/auth.middleware";
 import CatController from "../controller/cat.controller";
 import { categoryValidation, loginValidation } from "../middlewares/validator.middleware";
 import { Router } from "express";
-import { isAdmin } from "@/middlewares/isAdmin.middleware";
-import { ValidationMiddleware } from "@/middlewares/validation.middleware";
+import { isAdmin } from "../middlewares/isAdmin.middleware";
+import { ValidationMiddleware } from "../middlewares/validation.middleware";
 
 
 
