@@ -56,7 +56,7 @@ export class OfferService{
     static async update(id:number,offer:Offer){
         const foundOffer=await prisma.offer.findUnique({where:{id}})
         if(!foundOffer) throw new httpException(404,'Offers not found')
-        return await prisma.user.update({where:{id},data:{...offer}})
+        return await prisma.offer.update({where:{id},data:{...offer}})
         //prisma.user.update(foundOffer)
     }
 
